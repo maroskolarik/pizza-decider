@@ -6,7 +6,7 @@ def choose_pizza(available_pizzas, favorite_pizzas):
     weighted_pizzas = list(available_pizzas.values())  
 
     # Assign weights to pizzas based on their presence in the favorite list
-    weights = [8 if pizza in favorite_pizzas else 1 for pizza in weighted_pizzas]
+    weights = [16 if pizza in favorite_pizzas else 1 for pizza in weighted_pizzas]
 
     # Randomly choose a pizza with the weights applied
     chosen_pizza = random.choices(weighted_pizzas, weights=weights, k=1)[0]
@@ -33,13 +33,15 @@ def main():
     # List of favorite pizzas
     favorite_pizzas = ['Slivopizza', 'Špenátová', 'Pivárska']
 
+    pizza_count = int(input('How many pizzas would you like? '))
+
     print('Your favorite pizzas:')
     for pizza in favorite_pizzas:
         print(f'{pizza}')
 
     user_input = input('Press "E" for edit the list or press "ENTER" to continue: ')
 
-    if len(favorite_pizzas) == 0 or user_input == 'E' or user_input == 'E':
+    if len(favorite_pizzas) == 0 or user_input == 'e' or user_input == 'E':
         print("Select your favorite pizzas from the list below (enter the corresponding numbers separated by commas): ")
         for key, pizza in available_pizzas.items():
             print(f"{key}: {pizza}")
@@ -51,8 +53,14 @@ def main():
             if num in available_pizzas:
                 favorite_pizzas.append(available_pizzas[num])
 
-    chosen_pizza = choose_pizza(available_pizzas, favorite_pizzas)
-    print(f"Today's pizza choice is: {chosen_pizza[0]}. {chosen_pizza[1]}")
+    if pizza_count > 1:
+        print("Today's pizza choices are:")
+        for i in range(pizza_count):
+            chosen_pizza = choose_pizza(available_pizzas, favorite_pizzas)
+            print(f"{chosen_pizza[0]}. {chosen_pizza[1]}")
+    else:
+        chosen_pizza = choose_pizza(available_pizzas, favorite_pizzas)
+        print(f"Today's pizza choice is:\n{chosen_pizza[0]}. {chosen_pizza[1]}")
 
 
 if __name__ == "__main__":
