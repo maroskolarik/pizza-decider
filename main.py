@@ -47,11 +47,8 @@ def print_chosen_pizza():
         print(f'Today\'s pizza choice is:\n{chosen_pizza[0]}. {chosen_pizza[1]}')
 
 
-def main():
+def edit_favorite_pizzas():
     global favorite_pizzas
-    print('Welcome to Pizza Decider 2000!')
-    print('Your favorite pizzas:')
-    print('\n'.join(favorite_pizzas))
 
     user_input = input('Press "E" for edit the list or press "ENTER" to continue: ')
 
@@ -65,6 +62,13 @@ def main():
         print('Your new favorite pizzas:')
         print('\n'.join(favorite_pizzas))
 
+
+def main():
+    print('Welcome to Pizza Decider 2000!')
+    print('Your favorite pizzas:')
+    print('\n'.join(favorite_pizzas))
+
+    edit_favorite_pizzas()
     print_chosen_pizza()
 
 
