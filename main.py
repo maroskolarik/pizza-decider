@@ -16,7 +16,15 @@ def choose_pizza(available, favorite):
 
 
 def get_pizza_count():
-    return int(input('How many pizzas would you like? '))
+    while True:
+        try:
+            user_input = int(input('How many pizzas would you like? '))
+            if user_input > 0:
+                return user_input
+            else:
+                print('Please enter a positive number.')
+        except ValueError:
+            print('Please enter a valid integer.')
 
 
 def print_chosen_pizza():
