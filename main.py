@@ -48,6 +48,7 @@ def print_chosen_pizza():
 
 
 def main():
+    global favorite_pizzas
     print('Welcome to Pizza Decider 2000!')
     print('Your favorite pizzas:')
     print('\n'.join(favorite_pizzas))
@@ -59,7 +60,10 @@ def main():
         print('\n'.join([f'{key}: {pizza}' for key, pizza in available_pizzas.items()]))
         selected_pizza_numbers = [int(num.strip()) for num in
                                   input('Enter the numbers of your favorite pizzas separated by commas: ').split(',')]
-        favorite_pizzas.extend([available_pizzas[num] for num in selected_pizza_numbers if num in available_pizzas])
+        favorite_pizzas = [available_pizzas[num] for num in selected_pizza_numbers if num in available_pizzas]
+
+        print('Your new favorite pizzas:')
+        print('\n'.join(favorite_pizzas))
 
     print_chosen_pizza()
 
