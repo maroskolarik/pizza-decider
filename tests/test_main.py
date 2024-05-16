@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from main import choose_pizza, get_pizza_count
+from src.main import choose_pizza, get_pizza_count
 
 
 class TestPizzaDecider(unittest.TestCase):
