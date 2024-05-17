@@ -3,7 +3,7 @@ from data.pizzas import available_pizzas, favorite_pizzas
 
 
 def choose_pizza(available, favorite):
-    weights = [16 if pizza in favorite else 1 for pizza in list(available.values())]
+    weights = [4 if pizza in favorite else 1 for pizza in list(available.values())]
     chosen_pizza = random.choices(list(available.values()), weights=weights, k=1)[0]
 
     pizza_number = 0
