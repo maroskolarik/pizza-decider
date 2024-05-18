@@ -21,7 +21,7 @@
         {% if favorite_pizzas|length == 0 %}
             <h2>Your favorite pizza:</h2>
             <ul class="list-group">
-                <li class="list-group-item">You do not have a favorite pizza, <a href="{{ url_for('edit_favorite_pizzas') }}">change it</a>.</li>
+                <li class="list-group-item">You do not have any favorites yet, <a href="{{ url_for('edit_favorite_pizzas') }}">change it</a>.</li>
             </ul>
         {% elif favorite_pizzas|length == 1 %}
             <h2>Your favorite pizza:</h2>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success">Choose Pizza</button>
+            <button type="submit" class="btn btn-success">Choose Pizza for me</button>
         </form>
     </div>
     <script>
