@@ -37,6 +37,15 @@ jobs:
     resource_class: small
     steps:
       - checkout
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh -o StrictHostKeyChecking=no $DEPLOYMENT_SERVER_USER@$DEPLOYMENT_SERVER "
+            docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASS &&
+            docker container stop $CIRCLE_PROJECT_REPONAME || true &&
+            docker container rm $CIRCLE_PROJECT_REPONAME || true &&
+            docker pull $DOCKER_HUB_USER/$CIRCLE_PROJECT_REPONAME &&
+            docker run --name $CIRCLE_PROJECT_REPONAME -p 80:5000 -d $DOCKER_HUB_USER/$CIRCLE_PROJECT_REPONAME"
 workflows:
   test-build-deploy:
     jobs:
