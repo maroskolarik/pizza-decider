@@ -3,7 +3,6 @@ import random
 
 app = Flask(__name__)
 
-# Mock data, replace with your actual data
 available_pizzas = {
     1: 'Cassa', 2: 'Syrová bomba', 3: 'Pekelníček', 4: 'Tropical',
     5: 'Pizza Taxi', 6: 'Vegetariánska', 7: 'Western', 8: 'Labužnícka',
@@ -61,4 +60,4 @@ def print_chosen_pizza():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
