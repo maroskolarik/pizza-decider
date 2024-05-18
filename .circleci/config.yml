@@ -9,8 +9,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install requirements
+          command: pip install -r requirements.txt
+      - run:
           name: Run tests
-          command: PYTHONPATH=. python -m unittest tests.test_main
+          command: PYTHONPATH=. python -m unittest tests.test_app
   build:
     docker:
       - image: cimg/base:2024.05
@@ -28,11 +31,19 @@ jobs:
             docker buildx create --use
             docker buildx build --platform linux/amd64,linux/arm64 -t $DOCKER_HUB_USER/$CIRCLE_PROJECT_REPONAME:$TAG --push .
             docker buildx build --platform linux/amd64,linux/arm64 -t $DOCKER_HUB_USER/$CIRCLE_PROJECT_REPONAME --push .
-
+  deploy:
+    docker:
+      - image: cimg/base:2024.05
+    resource_class: small
+    steps:
+      - checkout
 workflows:
-  run_tests:
+  test-build-deploy:
     jobs:
       - test
       - build:
           requires:
             - test
+      - deploy:
+          requires:
+            - build
