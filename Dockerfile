@@ -37,7 +37,8 @@ HEALTHCHECK --interval=30s --timeout=3s \
 USER appuser
 
 # Copy the source code into the container.
-COPY . .
+COPY ./templates ./templates
+COPY app.py .
 
 # Expose port 5000 to the outside world
 EXPOSE 5000
