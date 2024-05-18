@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Decider 2000</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Oswald', sans-serif;
+        }
+        .input-group {
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Welcome to Pizza Decider 2000!</h1>
+        {% if favorite_pizzas|length == 0 %}
+            <h2>Your favorite pizza:</h2>
+            <ul class="list-group">
+                <li class="list-group-item">You do not have a favorite pizza, <a href="{{ url_for('edit_favorite_pizzas') }}">change it</a>.</li>
+            </ul>
+
+        {% elif favorite_pizzas|length == 1 %}
+            <h2>Your favorite pizza:</h2>
+            <ul class="list-group">
+                <li class="list-group-item">{{ favorite_pizzas[0] }}</li>
+            </ul>
+        {% else %}
+            <h2>Your favorite pizzas:</h2>
+            <ul class="list-group">
+                {% for pizza in favorite_pizzas %}
+                    <li class="list-group-item">{{ pizza }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <a class="btn btn-primary mt-3" href="{{ url_for('edit_favorite_pizzas') }}">Edit Favorites</a>
+        <form class="mt-3" action="{{ url_for('print_chosen_pizza') }}" method="post">
+            <div class="form-group">
+                <label for="pizza_count">How many pizzas would you like?</label>
+                <div class="d-flex align-items-center">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="button" onclick="changeCount(-1)">-</button>
+                        </div>
+                        <input type="number" class="form-control" id="pizza_count" name="pizza_count" min="1" value="1" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" onclick="changeCount(1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Choose Pizza</button>
+        </form>
+    </div>
+    <script>
+        function changeCount(delta) {
+            let countInput = document.getElementById('pizza_count');
+            let currentValue = parseInt(countInput.value);
+            let newValue = currentValue + delta;
+            if (newValue < 1) newValue = 1;
+            countInput.value = newValue;
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
