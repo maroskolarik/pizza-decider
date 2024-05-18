@@ -14,13 +14,23 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Today's Pizza Choices</h1>
-        <ul class="list-group">
-            {% for number, pizza in chosen_pizzas %}
-                <li class="list-group-item">{{ number }}. {{ pizza }}</li>
-            {% endfor %}
-        </ul>
-        <a class="btn btn-info mt-3" href="https://www.taxi-myjava.sk/pizza-cennik/" target="_blank">Order</a>
+        {% if chosen_pizzas|length == 1 %}
+            <h1 class="text-center">Today's Pizza Choice</h1>
+            <ul class="list-group">
+                {% for number, pizza in chosen_pizzas %}
+                    <li class="list-group-item">{{ number }}. {{ pizza }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h1 class="text-center">Today's Pizza Choices</h1>
+            <ul class="list-group">
+                {% for number, pizza in chosen_pizzas %}
+                    <li class="list-group-item">{{ number }}. {{ pizza }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <a class="btn btn-success mt-3" href="https://www.taxi-myjava.sk/pizza-cennik/" target="_blank">Order</a>
+        </br>
         <a class="btn btn-secondary mt-3" href="{{ url_for('index') }}">Back to Home</a>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
