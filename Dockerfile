@@ -25,7 +25,13 @@ RUN adduser \
 # Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
 # Leverage a bind mount to requirements.txt to avoid having to copy them into
 # into this layer.
-RUN --mount=type=cache,target=/root/.cache/pip
+RUN --mount=type=cache,target=/root/.cache/pip \
+    --mount=type=bind,source=requirements.txt,target=requirements.txt \
+    python -m pip install -r requirements.txt
+
+# Define a health check command
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD wget --quiet --tries=1 --spider http://localhost:5000 || exit 1
 
 # Switch to the non-privileged user to run the application.
 USER appuser
@@ -33,5 +39,11 @@ USER appuser
 # Copy the source code into the container.
 COPY . .
 
-# Run the application.
-CMD python main.py
+# Expose port 5000 to the outside world
+EXPOSE 5000
+
+# Define environment variable
+ENV FLASK_APP=app.py
+
+# Run the Flask application when the container launches
+CMD ["flask", "run", "--host=0.0.0.0"]
