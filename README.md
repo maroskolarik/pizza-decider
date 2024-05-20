@@ -1,7 +1,3 @@
-Got it! Here’s the updated README to reflect that the Pizza Decider is meant for individual use to help in making a random pizza choice while considering personal favorites:
-
----
-
 # Pizza Decider 2000
 
 Pizza Decider is a web application designed to help you decide which pizza to order. Instead of randomly choosing any pizza, the application allows you to input your favorite pizzas, increasing their chances of being selected through a weighted random selection process.
