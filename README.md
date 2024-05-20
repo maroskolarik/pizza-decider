@@ -74,29 +74,6 @@ Pizza Decider is a web application designed to help you decide which pizza to or
 2. Click the button to randomly select a pizza.
 3. The application will increase the probability of selecting a pizza from your favorites using weighted random selection.
 
-## Contributing
-
-We welcome contributions! Please follow these steps to contribute:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-    ```bash
-    git checkout -b feature-name
-    ```
-3. Make your changes and commit them with clear messages.
-    ```bash
-    git commit -m "Description of changes"
-    ```
-4. Push your changes to your forked repository.
-    ```bash
-    git push origin feature-name
-    ```
-5. Create a pull request describing your changes.
-
 ## Contact
 
 For any questions or suggestions, please feel free to open an issue on GitHub or contact the repository owner.
-
----
-
-This README now reflects that the Pizza Decider is an individual tool to help make a random pizza choice while considering personal favorites. Let me know if there are any other adjustments needed!
